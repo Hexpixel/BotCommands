@@ -1,4 +1,3 @@
-
 """
 I want this to be randomized but I haven't quite figured out how.
 The goal is to have a female or male bot who gets a randomized name and age (between 18 - 39) everytime the code is executed.
@@ -7,8 +6,8 @@ The goal is to have a female or male bot who gets a randomized name and age (bet
 import random
 
 name = input("Hey there.  What's your name? ")
-print("Nice to meetchya,", name)
-  
+print("Nice to meetchya," ,name)
+
 
 yes = ['Yes', 'yes']
 no = ['No', 'no']
