@@ -9,7 +9,14 @@ async def on_ready():
     #print(client.user.name)
     #print(client.user.id)
     print('------')
-    
+
+# New member
+@client.event
+async def on_member_join(member):
+    server = member.server
+    fmt = 'Welcome {0.mention} to {1.name}!'
+    await client.send_message(server, fmt.format(member, server))
+
 @client.event
 async def on_message(message):
     # we do not want the bot to reply to itself
@@ -23,3 +30,4 @@ async def on_message(message):
         await client.send_message(message.channel, "Yes?")
         
 client.run('token')
+
