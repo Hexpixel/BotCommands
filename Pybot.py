@@ -6,8 +6,8 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('Successfully logged in as')
-    print(client.user.name)
-    print(client.user.id)
+    print('Username:', client.user.name)
+    print('User ID:', client.user.id)
     print('------')
 
 # New member
