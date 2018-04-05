@@ -1,2 +1,2 @@
 # Pybot
-A simple Python chat bot.
+A Discord bot written in Python 3
