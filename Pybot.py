@@ -29,5 +29,4 @@ async def on_message(message):
     elif message.content.startswith('!bot'):
         await client.send_message(message.channel, "Yes?")
         
-client.run('token')
-
+client.run('token') # not showing this because ya'll will steal my bot
