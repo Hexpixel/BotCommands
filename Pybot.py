@@ -4,12 +4,6 @@ import discord
 client = discord.Client()
 
 @client.event
-async def on_member_join(member):
-    server = member.server
-    fmt = 'Welcome {0.mention} to {1.name}!'
-    await client.send_message(server, fmt.format(member, server))
-    
-@client.event
 async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
