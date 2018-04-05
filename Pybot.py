@@ -4,6 +4,13 @@ import discord
 client = discord.Client()
 
 @client.event
+async def on_ready():
+    print('Successfully logged in as Client User Name ',client.user.name, 'Client User ID ', client.user.id)
+    #print(client.user.name)
+    #print(client.user.id)
+    print('------')
+    
+@client.event
 async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
@@ -14,12 +21,5 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
     elif message.content.startswith('!bot'):
         await client.send_message(message.channel, "Yes?")
-
-@client.event
-async def on_ready():
-    print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
-    print('------')
-    
+        
 client.run('token')
