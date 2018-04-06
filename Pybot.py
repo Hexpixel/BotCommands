@@ -1,22 +1,18 @@
 import discord
+import random
 
 # creates a new Discord client
 client = discord.Client()
 
+token = ''
+
 @client.event
 async def on_ready():
     print('Successfully logged in as')
-    print('Username:', client.user.name)
-    print('User ID:', client.user.id)
+    print(client.user.name)
+    print(client.user.id)
     print('------')
-
-# New member
-@client.event
-async def on_member_join(member):
-    server = member.server
-    fmt = 'Welcome {0.mention} to {1.name}!'
-    await client.send_message(server, fmt.format(member, server))
-
+    
 @client.event
 async def on_message(message):
     # we do not want the bot to reply to itself
@@ -29,4 +25,4 @@ async def on_message(message):
     elif message.content.startswith('!bot'):
         await client.send_message(message.channel, "Yes?")
         
-client.run('token') # not showing this because ya'll will steal my bot
+client.run('token')
