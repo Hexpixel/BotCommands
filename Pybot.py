@@ -1,10 +1,8 @@
 import discord
-import random
 
 # creates a new Discord client
 client = discord.Client()
-
-token = ''
+token = 'NDMxMjU5MjYyNzI4MjczOTMw.DacJtA.a4rVp5q8vIISkMzgcH9n7Oi5scE'
 
 @client.event
 async def on_ready():
@@ -12,7 +10,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('------')
-    
+
 @client.event
 async def on_message(message):
     # we do not want the bot to reply to itself
@@ -25,4 +23,4 @@ async def on_message(message):
     elif message.content.startswith('!bot'):
         await client.send_message(message.channel, "Yes?")
         
-client.run('token')
+client.run(token)
