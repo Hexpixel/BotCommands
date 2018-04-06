@@ -26,7 +26,14 @@ async def on_message(message):
     elif message.content.startswith('!bot'):
         await client.send_message(message.channel, "Yes?")
 
-# bulk delete messages implementation
+@client.event
+async def on_message(message):
+    if message.content.startswith('!clear'):
+        tmp = await client.send_message(message.channel, 'Clearing messages...')
+        async for msg in client.logs_from(message.channel):
+            await client.delete_message(msg)
+            
+"""            
 @Client.command(pass_context = True)
 async def clear(ctx, number):
     mgs = [] # Empty list to put all the messages in the log
@@ -34,5 +41,6 @@ async def clear(ctx, number):
     async for x in Client.logs_from(ctx.message.channel, limit = number):
         mgs.append(x)
     await Client.delete_messages(mgs)
-    
+"""
+
 client.run(token)
