@@ -1,4 +1,3 @@
-import asyncio
 import discord
 from discord.ext.commands import Bot
 
@@ -32,15 +31,5 @@ async def on_message(message):
         tmp = await client.send_message(message.channel, 'Clearing messages...')
         async for msg in client.logs_from(message.channel):
             await client.delete_message(msg)
-            
-"""            
-@Client.command(pass_context = True)
-async def clear(ctx, number):
-    mgs = [] # Empty list to put all the messages in the log
-    number = int(number) # Converting the amount of messages to delete to an integer
-    async for x in Client.logs_from(ctx.message.channel, limit = number):
-        mgs.append(x)
-    await Client.delete_messages(mgs)
-"""
 
 client.run(token)
