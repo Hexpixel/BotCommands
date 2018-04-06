@@ -1,8 +1,11 @@
+import asyncio
 import discord
+from discord.ext.commands import Bot
 
 # creates a new Discord client
 client = discord.Client()
 token = 'NDMxMjU5MjYyNzI4MjczOTMw.DacJtA.a4rVp5q8vIISkMzgcH9n7Oi5scE'
+Client = Bot('!')
 
 @client.event
 async def on_ready():
@@ -22,5 +25,14 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
     elif message.content.startswith('!bot'):
         await client.send_message(message.channel, "Yes?")
-        
+
+# bulk delete messages implementation
+@Client.command(pass_context = True)
+async def clear(ctx, number):
+    mgs = [] # Empty list to put all the messages in the log
+    number = int(number) # Converting the amount of messages to delete to an integer
+    async for x in Client.logs_from(ctx.message.channel, limit = number):
+        mgs.append(x)
+    await Client.delete_messages(mgs)
+    
 client.run(token)
