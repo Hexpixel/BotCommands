@@ -1,10 +1,12 @@
 import discord
-from discord.ext.commands import Bot
+from discord.ext import commands
+import random
+import sys
 
 # creates a new Discord client
 client = discord.Client()
 token = 'token'
-Client = Bot('!')
+
 
 @client.event
 async def on_ready():
@@ -24,12 +26,12 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
     elif message.content.startswith('!bot'):
         await client.send_message(message.channel, "Yes?")
-
-@client.event
-async def on_message(message):
-    if message.content.startswith('!clear'):
-        tmp = await client.send_message(message.channel, 'Clearing messages...')
-        async for msg in client.logs_from(message.channel):
-            await client.delete_message(msg)
-
+    elif message.content.startswith('!flip'):
+        flip = random.choice(['Heads!', 'Tails!'])
+        await client.send_message(message.channel, flip)
+    elif message.content.startswith('!color'):
+        color = ['red', 'green', 'blue', 'orange', 'grey', 'purple', 'yellow', 'black', 'gold']
+        randomized = random.choice(color)
+        await client.send_message(message.channel, randomized)
+        
 client.run(token)
