@@ -3,7 +3,7 @@ from discord.ext.commands import Bot
 
 # creates a new Discord client
 client = discord.Client()
-token = 'NDMxMjU5MjYyNzI4MjczOTMw.DacJtA.a4rVp5q8vIISkMzgcH9n7Oi5scE'
+token = 'token'
 Client = Bot('!')
 
 @client.event
