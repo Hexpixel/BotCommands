@@ -50,7 +50,7 @@ async def on_message(message):
 
     if message.content.startswith('!number'):
         num = random.randint(0, 100000)
-        await client.send_message(message.channel, num) # I think that's how it works... or do I need to turn the integer into a string?
+        await client.send_message(message.channel, num)
 
     userID = message.author.id
     if message.content.startswith('!say'):
