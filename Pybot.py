@@ -69,15 +69,7 @@ async def on_message(message):
             await client.send_message(message.channel, "**ROLE CHECKER:** You are an admin of this server.")
         else:
             await client.send_message(message.channel, "**ROLE CHECKER:** You are not an admin of this server!")
-
-    if message.content.startswith('!purge'):
-        tmp = await client.send_message(message.channel, "Purging all of your messages from this channel...")
-        async for msg in client.logs_from(message.channel):
-            await client.delete_message(msg)
-        if not message.author.id:
-            await client.send_message(message.channel, "You don't have permission!")
-
-
+            
            # other code here
         
 client.run(token)
