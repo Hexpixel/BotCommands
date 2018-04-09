@@ -1,0 +1,14 @@
+-- List of commands for Pybot --
+
+'!hello' - say hello to the bot
+'!bot' - gets the bot's attention
+'!flip' - Heads or Tails
+'!color' - prints a random color
+'!number' - prints a random integer between 0 and 100,000
+'!SAY' - testing
+'!AMIADMIN' - testing
+'!purge' - delete all message from channel (developing)
+
+Page 1 of 1
+
+----------------------------------
