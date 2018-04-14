@@ -1,5 +1,5 @@
 # Pybot
-A Discord bot written in Python 3
+A Discord bot written in Python
 by Hexpixel (Terapixel)
 
 # Changelog:
