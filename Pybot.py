@@ -5,16 +5,16 @@ import random
 
 # creates a new Discord client
 client = discord.Client()
-token = '<your token goes here>'
+token = '<token here>'
 
-# I know these words are dirty/offensive, but I had to add them in to make sure that users on the server aren't using bad language. 
-chat_filter = ["DAMN", "FUCK", "SHIT", "ASS", "ANAL", "HELL", "VAGINA", "BOOBS"]
+chat_filter = ["<a bunch of disturbing words here>"]
 bypass_list = []
 
 @client.event
 async def on_ready():
     print(client.user.name, client.user.id, "is connected to Discord.")
     print('------')
+    await client.change_status(game=discord.Game(name='<whatever goes here>'))
 
 @client.event
 async def on_message(message):
@@ -28,7 +28,7 @@ async def on_message(message):
             if not message.author.id in bypass_list:
                 try:
                     await client.delete_message(message)
-                    await client.send_message(message.channel, "**FILTER FOR SEAN'S DIRTY MOUTH:** You aren't allowed to use that kind of language!")
+                    await client.send_message(message.channel, "***CHAT FILTER:*** You aren't allowed to use that kind of language!  You have been warned!")
                 except discord.errors.NotFound:
                     return
 
@@ -37,7 +37,7 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
 
     if message.content.startswith('!bot'):
-        await client.send_message(message.channel, "Yes?")
+        await client.send_message(message.channel, "Need anything?  If so, type '!help'")
 
     if message.content.startswith('!flip'):
         flip = random.choice(['Heads!', 'Tails!'])
@@ -51,25 +51,33 @@ async def on_message(message):
     if message.content.startswith('!number'):
         num = random.randint(0, 100000)
         await client.send_message(message.channel, num)
-
-    userID = message.author.id
-    if message.content.startswith('!say'):
-        #'<your ID>' = your ID
-        if message.author.id == '<your ID>':
-            args = message.content.split(" ")
-            await client.send_message(message.channel, "%s" % (" ".join(args[1:])))
-        else:
-            await client.send_message(message.channel, "You are not authorized!")
-
-            # "<your Admin role ID>" = Admin role ID
+        
+            # "<Admin ID here>" = Admin role ID
             # I can't get this admin role checker to work... Maybe it isn't supposed to check for the role IDs.
-            # trying to pass {0.author.mention}.format(message) into it but won't work.
     if message.content.upper().startswith('!AMIADMIN'):
-        if "<your Admin role ID>" is (role.id for role in message.author.roles):
+        if "<Admin role here>" is (role.id for role in message.author.roles):
             await client.send_message(message.channel, "**ROLE CHECKER:** You are an admin of this server.")
         else:
             await client.send_message(message.channel, "**ROLE CHECKER:** You are not an admin of this server!")
-            
-           # other code here
+
+    # purge messages
+    if message.content.startswith('!purge'):
+        if message.author.id != '<your ID here>':
+            try:
+                await client.send_message(message.channel, "You aren't allowed access to this command!")
+            except discord.errors.NotFound:
+                return
+        else:    
+            tmp = await client.send_message(message.channel, "Purging messages from this channel...")
+            async for msg in client.logs_from(message.channel):
+                await client.delete_message(msg)
         
+    # help command - prints a list of useful bot commands
+    if message.content.startswith('!help'):
+        file = open('commands.txt', 'r') # reads from commands.txt
+        if file.mode == 'r':
+            # read() function reads the contents
+            contents = file.read()
+            await client.send_message(message.channel, contents)
+
 client.run(token)
