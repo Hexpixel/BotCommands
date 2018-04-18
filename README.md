@@ -11,6 +11,3 @@ The sole purpose of my Discord server is to allow users to share their thoughts 
 
 Invite link: https://discord.gg/T2HkGe (this shouldn't expire)
 Email: if the link expired and it won't let you join my Discord, my email address is seanslatkavitz@gmail.com
-
-
-Want to contribute?  Send me an email and I'll think about making you a contributor!
